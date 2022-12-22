@@ -12,10 +12,10 @@ public class Main {
 //  Якщо ми хочемо працювати із посортоованим Set, тобто якщо ми хочемо мати унікальні і посортовані дані,
 //  ми використовуємо TreeSet.
 
-//        List<Person> people = new ArrayList<>();
-//        people.add(new Person(1, "Oksana", 20));
-//        people.add(new Person(2, "Yulia", 23));
-//        people.add(new Person(3, "Marta", 21));
+        List<Person> people = new ArrayList<>();
+        people.add(new Person(1, "Oksana", 20));
+        people.add(new Person(2, "Yulia", 23));
+        people.add(new Person(3, "Marta", 21));
 
 //  Щоб сортувати наший List, вже існує готовий метод sort(). Він приймає в собі comparator, додатковий інтерфейс.
 //  Його логіка така сама, як в Comparable. Але Comparable призначений  для того щоб сортувати всі наші поля, для
@@ -31,10 +31,10 @@ public class Main {
 //  по полю age: o1.getAge() - o2.getAge(); Відповідно, в наший метод передаємо наш готовий comparator. І, відповідно, воно
 //  нам їх всіх посортує.
 
-//        people.sort(new PersonAgeComparator());
-//        for (Person person: people) {
-//            System.out.println(person);
-//        }
+        people.sort(new PersonAgeComparator());
+        for (Person person: people) {
+            System.out.println(person);
+        }
 
 //  Але, давайте подумаємо, що якщо нам потрібно багато таких comparator(ів). Ще по-імені, по-id, та ще і по-спаданню
 //  по-всім іншим полям, то получається нам потрібно зробити дуже багато класів. Це не дуже нам підходить.
@@ -44,22 +44,22 @@ public class Main {
 //  у змінній, у нашому випадку, comparator. Ця змінна стає типом Comparator, вона має перевизначений його інтерфейс і
 //  ми можемо його передавати і використовувати, як хочемо.
 
-//        Comparator<Person> comparator = new Comparator<Person>() {
-//            @Override
-//            public int compare(Person o1, Person o2) {
-//                return o1.getId() - o2.getId();
-//            }
-//        };
+        Comparator<Person> comparator = new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                return o1.getId() - o2.getId();
+            }
+        };
 
 //  В результаті, ми ніякого окремого класу не створювали і це вже краще, наші дані вже є відсортовані.
 //  Дані дії ми можемо ще більш спростити за допомогою лямбда виразів.
 //  Фактично, лямбда замінила анонімні класи. Нижче, ми зробили абсолютно те саме, що вище в анонімному класі.
 
-//        Comparator<Person> id = (o1, o2) -> o1.getId() - o2.getId();
+        Comparator<Person> id = (o1, o2) -> o1.getId() - o2.getId();
 
 //  або
 
-//        Comparator<Person> age = Comparator.comparingInt(Person::getId);
+        Comparator<Person> age = Comparator.comparingInt(Person::getId);
 
 //  Comparable є вимогою для лише для роботи із TreeSet. TreeSet не знає, що таке comparator, він працює лише із comparator.
 //  TreeSet необхідний метод compareTo() для того щоб порівнювати об'єкти, comparator йому не допоможе.
@@ -85,7 +85,7 @@ public class Main {
         personMap.put("second", new Person(2, "Maria", 29));
         personMap.put("third", new Person(3, "Nadia", 21));
 
-//        System.out.println(personMap); //  {third=Person{id=3, name='Nadia', age=21},
+        System.out.println(personMap); //  {third=Person{id=3, name='Nadia', age=21},
                                        //  first=Person{id=1, name='Olya', age=26},
                                        //  second=Person{id=2, name='Maria', age=29}}
 
